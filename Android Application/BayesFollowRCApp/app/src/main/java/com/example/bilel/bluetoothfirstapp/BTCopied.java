@@ -80,7 +80,14 @@ public class BTCopied {
     public void enableMotors(boolean isEnabled)
     {
         started = isEnabled;
-        autoMove(netBayes.execInference());
+        if(started)
+            autoMove(netBayes.execInference());
+        else
+        {
+            String action = "5";
+            byte[] binaryString = action.getBytes(Charset.defaultCharset());
+            write(binaryString);
+        }
     }
 
     public void enablemov(boolean movEnabled)
