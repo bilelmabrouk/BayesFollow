@@ -281,4 +281,20 @@ public class BayesTest
 
     }
 
+    public void copyMotorVector(double[] vector)
+    {
+        for (int i=0; i<vMotor.length; i++)
+        {
+            vector[i] = vMotor[i];
+        }
+    }
+
+    public void copySensorVector(int id, double[] vector)
+    {
+        for (int i=0; i<vSensors[id-1].length; i++)
+        {
+            vector[i] = vSensors[id-1][i];
+        }
+    }
+
 }
