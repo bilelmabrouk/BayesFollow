@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.bilel.bluetoothfirstapp.ResultActivity"
+    android:orientation="vertical"
+    android:background="#383A4C">
+    <ListView
+        android:id="@+id/list_log"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".9"
+        android:layout_marginBottom="5dp">
+    </ListView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight=".05"
+        android:padding="5dp">
+        <Button
+            android:id="@+id/btnupdate"
+            android:text="Update Network"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:background="#28878D"
+            android:textColor="#FFFFFF"
+            android:layout_marginRight="5dp"/>
+        <Button
+            android:id="@+id/btnoverwrite"
+            android:text="Overwrite Network"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:background="#28878D"
+            android:textColor="#FFFFFF"
+            android:layout_marginLeft="5dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight=".05"
+        android:padding="5dp">
+        <Button
+            android:id="@+id/btnreturn"
+            android:text="Clear and Return"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:background="#28878D"
+            android:textColor="#FFFFFF"
+            android:layout_marginRight="5dp"/>
+        <Button
+            android:id="@+id/btnreset"
+            android:text="Reset Network"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:background="#28878D"
+            android:textColor="#FFFFFF"
+            android:layout_marginLeft="5dp"/>
+    </LinearLayout>
+
+</LinearLayout>

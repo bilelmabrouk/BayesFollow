@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.bilel.bluetoothfirstapp.InferenceActivity"
+    android:orientation="vertical"
+    android:background="#383A4C">
+
+    <TextView
+        android:id="@+id/titre31"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="Bayesian Line Follower"
+        android:textAlignment="center"
+        android:textColor="#FF5C97E1"
+        android:textSize="70dp"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/titre32"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Autonomous Mode"
+        android:textColor="#EE4B86D0"
+        android:textSize="35dp"
+        android:textStyle="italic"
+        android:layout_marginTop="-15dp"
+        android:layout_marginRight="20dp"
+        android:textAlignment="textEnd"
+        />
+
+
+
+
+    <RelativeLayout
+        android:layout_gravity="bottom"
+        android:padding="15dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.example.bilel.bluetoothfirstapp.NetworkView
+            android:id="@+id/net"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:layout_centerHorizontal="true"/>
+
+        <Button
+            android:id="@+id/start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start"
+            android:background="#28878D"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_alignParentBottom="true"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>

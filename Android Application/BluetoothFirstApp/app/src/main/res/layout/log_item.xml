@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/actionText"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_weight=".6"
+        android:textSize="18dp"
+        android:textAlignment="center"
+        android:textColor="#FF5C97E1"
+        android:text="Action"
+        />
+    <ImageView
+        android:src="@drawable/red_on"
+        android:id="@+id/sensor1"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_weight=".1"
+        />
+    <ImageView
+        android:id="@+id/sensor2"
+        android:src="@drawable/red_on"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_weight=".1"/>
+    <ImageView
+        android:id="@+id/sensor3"
+        android:src="@drawable/red_on"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_weight=".1"/>
+    <ImageView
+        android:id="@+id/sensor4"
+        android:src="@drawable/red_on"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_weight=".1"/>
+
+</LinearLayout>
