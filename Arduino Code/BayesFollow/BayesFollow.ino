@@ -15,6 +15,8 @@ const int pmwr = 11;
 
 int maxspeed = 255;
 
+bool pressed = false;
+
 //***change those values to suit ur enviroment***speed declaration for motors speeds (forward & reverse = speedmax)(turnright or turnleft = speeedmin
 int speedmax = 255; //set defult speed of motor 0-255
 int speedmin;//set the defult min speed to turn 0-255
@@ -64,6 +66,7 @@ void loop()//here is where everyting run sover and over again until the power sh
       exmov = mov;
   if(Serial.available()>0)
   {
+    pressed = true;
     mov = Serial.read();
     if( mov == 'H' || mov == 'C' || mov == 'A')
     {
@@ -76,8 +79,9 @@ void loop()//here is where everyting run sover and over again until the power sh
       mov = '5';
     }
   }
-  
-  
+  else
+    pressed = false;
+   
 
   if (robotMode == 'C' || robotMode == 'A')
   {
@@ -101,7 +105,10 @@ void loop()//here is where everyting run sover and over again until the power sh
       {
         Serial.print(sensors);
         Serial.print("-");
-        Serial.print(mov);
+        if(pressed)
+          Serial.print(mov);
+        else
+          Serial.print('0');
         Serial.print("#"); 
       }
     //}

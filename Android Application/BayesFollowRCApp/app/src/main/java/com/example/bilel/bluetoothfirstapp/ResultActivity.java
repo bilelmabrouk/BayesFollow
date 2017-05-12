@@ -69,7 +69,7 @@ public class ResultActivity extends AppCompatActivity {
                 netBayes.copySensorVector(3,vSensor3);
                 netBayes.copySensorVector(4,vSensor4);
 
-                for (int i=0; i<states.size(); i++)
+                for (int i=1; i<states.size(); i++)
                 {
                     State state = states.get(i);
                     int sensors = state.getSensors();

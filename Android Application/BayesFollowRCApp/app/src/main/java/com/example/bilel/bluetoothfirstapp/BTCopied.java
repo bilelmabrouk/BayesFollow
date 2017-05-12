@@ -390,7 +390,7 @@ public class BTCopied {
             {
                 currentState.setSensors(Integer.parseInt(parts[0]));
                 currentState.setAction(Integer.parseInt(parts[1]));
-                if(movEnabled && currentState.getAction()!=5)
+                if(movEnabled && currentState.getAction()!=5 && currentState.getAction()!=0)
                 {
                     recordedStates.add(currentState);
                 }
