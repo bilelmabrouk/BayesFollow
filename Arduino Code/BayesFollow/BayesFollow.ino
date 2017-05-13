@@ -13,7 +13,7 @@ const int dirr = 13;
 const int brer =  8;
 const int pmwr = 11;
 
-int maxspeed = 255;
+int maxspeed = 200;
 
 bool pressed = false;
 

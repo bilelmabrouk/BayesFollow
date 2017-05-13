@@ -419,11 +419,11 @@ public class ResultActivity extends AppCompatActivity {
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                netBayes.editMotorValues(new double[] {0.3,0.1,0.1,0.04,0.15,0.15,0.08,0.08});
-                netBayes.editSensorValues(1, new double[] {0.2,0.8,0.05,0.95,1,0,0,1,0.1,0.9,1,0,0.1,0.9,0.1,0.9});
-                netBayes.editSensorValues(2, new double[] {1,0,0.2,0.8,0.4,0.6,0,1,0.4,0.6,0.9,0.1,0.09,0.91,0.04,0.96});
-                netBayes.editSensorValues(3, new double[] {1,0,0.4,0.6,0.2,0.8,0,1,0.9,0.1,0.4,0.6,0.04,0.96,0.09,0.91});
-                netBayes.editSensorValues(4, new double[] {0.2,0.8,1,0,0.05,0.95,0,1,1,0,0.1,0.9,0.01,0.99,0.1,0.9});
+                netBayes.editMotorValues(new double[] {0.3,0.15,0.15,0.08,0.12,0.12,0.04,0.04});
+                netBayes.editSensorValues(1, new double[] {0.3,0.7,0,1,0.8,0.2,0.15,0.85,0,1,0.7,0.3,0,1,0.3,0.7});
+                netBayes.editSensorValues(2, new double[] {0.8,0.2,0.3,0.7,0.7,0.3,0.15,0.85,0.5,0.5,0.5,0.5,0.1,0.9,0.2,0.8});
+                netBayes.editSensorValues(3, new double[] {0.8,0.2,0.7,0.3,0.3,0.7,0.15,0.85,0.8,0.2,0.8,0.2,0.2,0.8,0.1,0.9});
+                netBayes.editSensorValues(4, new double[] {0.3,0.7,0.8,0.2,0,1,0.15,0.85,0.7,0.3,0,1,0.3,0.7,0,1});
                 netBayes.saveNetwork();
                 Toast.makeText(getApplicationContext(), "RESET SUCCESSFUL",Toast.LENGTH_SHORT).show();
             }
