@@ -12,8 +12,6 @@ import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.util.Log;
 
-import com.bayesserver.Network;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -25,7 +23,7 @@ import java.util.UUID;
  * Created by User on 12/21/2016.
  */
 
-public class BTCopied {
+public class BluetoothManager {
     private static final String TAG = "BluetoothConnectionServ";
 
     private static final String appName = "MYAPP";
@@ -46,7 +44,7 @@ public class BTCopied {
 
     private NetworkView netview;
     private SensorsControlView sensorView;
-    private BayesTest netBayes;
+    private BayesianNetwork netBayes;
 
     private final BluetoothAdapter mBluetoothAdapter;
     Context mContext;
@@ -60,7 +58,7 @@ public class BTCopied {
     private ConnectedThread mConnectedThread;
     private ArrayList<State> recordedStates;
 
-    public BTCopied(Context context) {
+    public BluetoothManager(Context context) {
         resetRecorderStates();
         mContext = context;
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -277,7 +275,7 @@ public class BTCopied {
 
     }
 
-    public void startClientAutonomous (BluetoothDevice device, UUID uuid, NetworkView netview, BayesTest net)
+    public void startClientAutonomous (BluetoothDevice device, UUID uuid, NetworkView netview, BayesianNetwork net)
     {
         Log.d(TAG, "startClient: Started Autonomous mode.");
 

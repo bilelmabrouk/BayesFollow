@@ -16,13 +16,13 @@ import java.util.Set;
  * Created by Bilel on 3/24/2017.
  */
 
-public class MyCustomAdapter extends BaseAdapter
+public class BluetoothDeviceListAdapter extends BaseAdapter
 {
     private Context context; //context
     private Set<BluetoothDevice> items; //data source of the list adapter
 
     //public constructor
-    public MyCustomAdapter(Context context, Set<BluetoothDevice> items) {
+    public BluetoothDeviceListAdapter(Context context, Set<BluetoothDevice> items) {
         this.context = context;
         this.items = items;
     }

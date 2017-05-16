@@ -2,26 +2,21 @@ package com.example.bilel.bluetoothfirstapp;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Set;
 
-public class SelectDeviceActivity extends AppCompatActivity {
+public class PairedDevicesActivity extends AppCompatActivity {
 
     private BluetoothAdapter myBTAdapter;
     private Set<BluetoothDevice> listPairedDevices;
@@ -46,7 +41,7 @@ public class SelectDeviceActivity extends AppCompatActivity {
         ListView pairedlv = (ListView) findViewById(R.id.pairedListView);
         ArrayAdapter<String> avadapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1 ,liste);
         pairedlv.setAdapter(avadapter);
-        final MyCustomAdapter adapter = new MyCustomAdapter(getApplicationContext(), listPairedDevices);
+        final BluetoothDeviceListAdapter adapter = new BluetoothDeviceListAdapter(getApplicationContext(), listPairedDevices);
         pairedlv.setAdapter(adapter);
         pairedlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

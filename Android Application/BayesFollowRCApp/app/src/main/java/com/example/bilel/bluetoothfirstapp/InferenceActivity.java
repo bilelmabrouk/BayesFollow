@@ -12,8 +12,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bayesserver.Network;
-
 import java.util.Iterator;
 import java.util.Set;
 import java.util.UUID;
@@ -21,11 +19,11 @@ import java.util.UUID;
 public class InferenceActivity extends AppCompatActivity
 {
     NetworkView netview;
-    BayesTest net;
+    BayesianNetwork net;
     Button btnStart;
     BluetoothDevice targetDevice;
     boolean started = false;
-    BTCopied mBluetoothConnection;
+    BluetoothManager mBluetoothConnection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,11 +65,11 @@ public class InferenceActivity extends AppCompatActivity
         titre31.setTypeface(font);
         titre32.setTypeface(font);
         netview = (NetworkView) findViewById(R.id.net);
-        net = new BayesTest(getApplicationContext());
+        net = new BayesianNetwork(getApplicationContext());
 
         btnStart = (Button) findViewById(R.id.start);
 
-        mBluetoothConnection = new BTCopied(InferenceActivity.this);
+        mBluetoothConnection = new BluetoothManager(InferenceActivity.this);
         mBluetoothConnection.startClientAutonomous(targetDevice, UUID.fromString("00001101-0000-1000-8000-00805f9b34fb"),netview,net);
     }
 

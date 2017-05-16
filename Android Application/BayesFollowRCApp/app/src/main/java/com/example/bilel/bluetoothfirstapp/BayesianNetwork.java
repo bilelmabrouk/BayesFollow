@@ -14,7 +14,7 @@ import java.text.DecimalFormat;
  * Created by Bilel on 4/14/2017.
  */
 
-public class BayesTest
+public class BayesianNetwork
 {
     Context ctx;
     Network naiveNet;
@@ -59,7 +59,7 @@ public class BayesTest
     boolean s4 = false;
 
 
-    public BayesTest(Context ctx)
+    public BayesianNetwork(Context ctx)
     {
         this.ctx = ctx;
         initNetwork();

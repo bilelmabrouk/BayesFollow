@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class ResultActivity extends AppCompatActivity {
+public class ControlLogActivity extends AppCompatActivity {
 
     ListView lv;
     LogAdapter logAdapter;
@@ -22,7 +22,7 @@ public class ResultActivity extends AppCompatActivity {
     Button overwriteButton;
     Button returnButton;
     Button resetButton;
-    BayesTest netBayes;
+    BayesianNetwork netBayes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class ResultActivity extends AppCompatActivity {
         overwriteButton = (Button) findViewById(R.id.btnoverwrite);
         returnButton = (Button) findViewById(R.id.btnreturn);
         resetButton = (Button) findViewById(R.id.btnreset);
-        netBayes = new BayesTest(getApplicationContext());
+        netBayes = new BayesianNetwork(getApplicationContext());
     }
 
     private void setEvents()
