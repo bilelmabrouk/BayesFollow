@@ -16,7 +16,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.UUID;
 
-public class InferenceActivity extends AppCompatActivity
+public class AutonomousModeActivity extends AppCompatActivity
 {
     NetworkView netview;
     BayesianNetwork net;
@@ -29,15 +29,12 @@ public class InferenceActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inference);
+        getDevice();
         Initialisation();
         setEvents();
     }
 
-    private void Initialisation()
-    {
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        Typeface font = Typeface.createFromAsset(getAssets(), "NovaFlat.ttf");
-
+    private void getDevice() {
         Intent i0 = getIntent();
         String btAdress = i0.getStringExtra("address");
         Set<BluetoothDevice> liste = BluetoothAdapter.getDefaultAdapter().getBondedDevices();
@@ -58,18 +55,21 @@ public class InferenceActivity extends AppCompatActivity
         {
             Toast.makeText(getApplicationContext(),"No Passed Device", Toast.LENGTH_SHORT).show();
         }
+    }
 
-
+    private void Initialisation()
+    {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        Typeface font = Typeface.createFromAsset(getAssets(), "NovaFlat.ttf");
         TextView titre31 = (TextView) findViewById(R.id.titre31);
         TextView titre32 = (TextView) findViewById(R.id.titre32);
         titre31.setTypeface(font);
         titre32.setTypeface(font);
         netview = (NetworkView) findViewById(R.id.net);
         net = new BayesianNetwork(getApplicationContext());
-
         btnStart = (Button) findViewById(R.id.start);
 
-        mBluetoothConnection = new BluetoothManager(InferenceActivity.this);
+        mBluetoothConnection = new BluetoothManager(AutonomousModeActivity.this);
         mBluetoothConnection.startClientAutonomous(targetDevice, UUID.fromString("00001101-0000-1000-8000-00805f9b34fb"),netview,net);
     }
 

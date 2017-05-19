@@ -21,19 +21,15 @@ public class BayesianNetwork
     NetworkNodeCollection nodes;
     NetworkLinkCollection links;
     Node sensor1;
-    Table tableS1;
     State s1ON;
     State s1OFF;
     Node sensor2;
-    Table tableS2;
     State s2ON;
     State s2OFF;
     Node sensor3;
-    Table tableS3;
     State s3ON;
     State s3OFF;
     Node sensor4;
-    Table tableS4;
     State s4ON;
     State s4OFF;
     Node motor;
@@ -69,7 +65,6 @@ public class BayesianNetwork
         loadNetwork();
         setInitialTableMotor();
         setInitialTableSensors();
-        //execInference(false,true,true,true);
     }
 
     public void editMotorValues(double[] paramMotor)

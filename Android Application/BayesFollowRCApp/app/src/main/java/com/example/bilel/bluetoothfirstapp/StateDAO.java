@@ -31,7 +31,8 @@ public class StateDAO
     }
 
     public ArrayList<State> getAllStates() {
-        Cursor c = maBaseDonnees.query(TABLE_STATES, new String[]{COLONNE_ID, COLONNE_SENSORS, COLONNE_ACTION}, null, null, null, null, null, null);
+        Cursor c = maBaseDonnees.query(TABLE_STATES, new String[]{COLONNE_ID, COLONNE_SENSORS, COLONNE_ACTION},
+                null, null, null, null, null, null);
         return cursorToStates(c);
     }
 

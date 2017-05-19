@@ -20,14 +20,15 @@ public class PairedDevicesActivity extends AppCompatActivity {
 
     private BluetoothAdapter myBTAdapter;
     private Set<BluetoothDevice> listPairedDevices;
-    private ArrayList<String> liste = new ArrayList<String> ();
+    ListView pairedlv;
+    BluetoothDeviceListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_device);
-        myBTAdapter = BluetoothAdapter.getDefaultAdapter();
         Initialisation();
+        setEvents();
     }
 
 
@@ -37,12 +38,16 @@ public class PairedDevicesActivity extends AppCompatActivity {
         Typeface font = Typeface.createFromAsset(getAssets(), "NovaFlat.ttf");
         TextView txtPaired = (TextView) findViewById(R.id.txtPaired);
         txtPaired.setTypeface(font);
+        myBTAdapter = BluetoothAdapter.getDefaultAdapter();
         listPairedDevices = myBTAdapter.getBondedDevices();
-        ListView pairedlv = (ListView) findViewById(R.id.pairedListView);
-        ArrayAdapter<String> avadapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1 ,liste);
-        pairedlv.setAdapter(avadapter);
-        final BluetoothDeviceListAdapter adapter = new BluetoothDeviceListAdapter(getApplicationContext(), listPairedDevices);
+        pairedlv = (ListView) findViewById(R.id.pairedListView);
+        adapter = new BluetoothDeviceListAdapter(getApplicationContext(), listPairedDevices);
         pairedlv.setAdapter(adapter);
+    }
+
+
+    public void setEvents()
+    {
         pairedlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

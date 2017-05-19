@@ -38,13 +38,20 @@ public class RemoteControlActivity extends AppCompatActivity {
     boolean started = false;
     SensorsControlView sensorsView;
     SwagPoints speedBarView;
-    int speed = 255;
+    int speed = 0;
     boolean firstTime = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getDevice();
+        Initialisation();
+        InitJoyStick();
+        setEvents();
+    }
+
+    private void getDevice() {
         Intent i0 = getIntent();
         btAdress = i0.getStringExtra("address");
         Set<BluetoothDevice> liste = BluetoothAdapter.getDefaultAdapter().getBondedDevices();
@@ -65,10 +72,6 @@ public class RemoteControlActivity extends AppCompatActivity {
         {
             Toast.makeText(getApplicationContext(),"No Passed Device", Toast.LENGTH_SHORT).show();
         }
-
-        Initialisation();
-        InitJoyStick();
-        setEvents();
     }
 
     private void Initialisation() {
@@ -84,6 +87,8 @@ public class RemoteControlActivity extends AppCompatActivity {
         speedBarView = (SwagPoints) findViewById(R.id.speedView);
         sensorsView = (SensorsControlView) findViewById(R.id.sensorView);
 
+        speedBarView.setMin(0);
+        speedBarView.setMax(255);
         speedBarView.setPoints(speed);
 
         mBluetoothConnection = new BluetoothManager(RemoteControlActivity.this);
@@ -94,7 +99,6 @@ public class RemoteControlActivity extends AppCompatActivity {
     private void InitJoyStick()
     {
         imgLayout = (RelativeLayout)findViewById(R.id.imgLayout);
-        //imgLayout.setBackground(getResources().getDrawable(R.drawable.mainicon));
         js = new JoyStick(getApplicationContext()
                 , imgLayout, R.drawable.image_button);
         js.setStickSize(80, 80);
@@ -246,39 +250,6 @@ public class RemoteControlActivity extends AppCompatActivity {
     };
         imgLayout.setOnTouchListener(touchListener);
 
-    }
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        /*
-        if(requestCode == 1 && resultCode == RESULT_OK)
-        {
-            btnConnect.setText("Disconnect From Bluetooth");
-            btnSelect.setEnabled(true);
-            btnSelect.setTextColor(Color.parseColor("#FFFFFF"));
-            btnSelect.setBackgroundColor(Color.parseColor("#28878D"));
-        }
-        if(requestCode == 2 && resultCode == RESULT_OK)
-        {
-            String address = data.getStringExtra("BTAddress");
-            Set<BluetoothDevice> liste = BluetoothAdapter.getDefaultAdapter().getBondedDevices();
-            for (Iterator<BluetoothDevice> it = liste.iterator(); it.hasNext(); ) {
-                BluetoothDevice bt = it.next();
-                if (bt.getAddress().equals(address))
-                {
-                    targetDevice = bt;
-                    break;
-                }
-            }
-            if(targetDevice!=null)
-            {
-                Toast.makeText(getApplicationContext(), targetDevice.getName() + " is selected", Toast.LENGTH_SHORT).show();
-                btnStart.setEnabled(true);
-                btnStart.setTextColor(Color.parseColor("#FFFFFF"));
-                btnStart.setBackgroundColor(Color.parseColor("#28878D"));
-            }
-        }
-        */
     }
 
     @Override

@@ -43,9 +43,10 @@ public class MainActivity extends AppCompatActivity {
         titre22.setTypeface(font);
 
         myBTAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        //Find Views By Their id from layout (XML files)
         btnConnect = (Button) findViewById(R.id.connect2);
         btnSelect = (Button) findViewById(R.id.select_dev2);
-
         autonomousMode = (ImageButton) findViewById(R.id.autoMode);
         controlMode = (ImageButton) findViewById(R.id.controlMode);
 
@@ -81,12 +82,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (!myBTAdapter.isEnabled())
                 {
-                    if (enableBluetooth())
-                    {
-
-                        //btnConnect.setBackgroundColor(Color.parseColor("#0d6673"));
-                    }
-
+                    enableBluetooth();
                 }
                 else
                 {
@@ -133,11 +129,6 @@ public class MainActivity extends AppCompatActivity {
             if(targetDevice!=null)
             {
                 Toast.makeText(getApplicationContext(), targetDevice.getName() + " is selected", Toast.LENGTH_SHORT).show();
-                /*
-                btnStart.setEnabled(true);
-                btnStart.setTextColor(Color.parseColor("#FFFFFF"));
-                btnStart.setBackgroundColor(Color.parseColor("#28878D"));
-                */
                 controlMode.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -149,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                 autonomousMode.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent i2 = new Intent(getApplicationContext(), InferenceActivity.class);
+                        Intent i2 = new Intent(getApplicationContext(), AutonomousModeActivity.class);
                         i2.putExtra("address", targetDevice.getAddress());
                         startActivity(i2);
                     }

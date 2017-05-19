@@ -35,7 +35,6 @@ public class ControlLogActivity extends AppCompatActivity {
     private void Initialisation()
     {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        Typeface font = Typeface.createFromAsset(getAssets(), "NovaFlat.ttf");
         lv = (ListView) findViewById(R.id.list_log);
         myDAO = new StateDAO(getApplicationContext());
         myDAO.open();
