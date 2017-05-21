@@ -28,7 +28,7 @@ public class BluetoothManager {
 
     private static final String appName = "MYAPP";
 
-    private static final UUID MY_UUID_INSECURE = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
+    private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
 
     public static final String CONTROL_MODE = "C";
 
@@ -59,13 +59,13 @@ public class BluetoothManager {
     private ArrayList<State> recordedStates;
 
     public BluetoothManager(Context context) {
-        resetRecorderStates();
+        resetRecordedStates();
         mContext = context;
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         start();
     }
 
-    public void resetRecorderStates()
+    public void resetRecordedStates()
     {
         recordedStates = new ArrayList<State>();
     }
@@ -98,6 +98,7 @@ public class BluetoothManager {
         byte[] binaryString = "H".getBytes(Charset.defaultCharset());
         write(binaryString);
         mConnectThread.cancel();
+        mConnectedThread.cancel();
     }
 
     /**
@@ -115,9 +116,9 @@ public class BluetoothManager {
 
             // Create a new listening server socket
             try{
-                tmp = mBluetoothAdapter.listenUsingInsecureRfcommWithServiceRecord(appName, MY_UUID_INSECURE);
+                tmp = mBluetoothAdapter.listenUsingInsecureRfcommWithServiceRecord(appName, MY_UUID);
 
-                Log.d(TAG, "AcceptThread: Setting up Server using: " + MY_UUID_INSECURE);
+                Log.d(TAG, "AcceptThread: Setting up Server using: " + MY_UUID);
             }catch (IOException e){
                 Log.e(TAG, "AcceptThread: IOException: " + e.getMessage() );
             }
@@ -145,7 +146,7 @@ public class BluetoothManager {
 
             //talk about this is in the 3rd
             if(socket != null){
-                connected(socket,mmDevice);
+                connected(socket);
             }
 
             Log.i(TAG, "END mAcceptThread ");
@@ -184,7 +185,7 @@ public class BluetoothManager {
             // given BluetoothDevice
             try {
                 Log.d(TAG, "ConnectThread: Trying to create InsecureRfcommSocket using UUID: "
-                        +MY_UUID_INSECURE );
+                        + MY_UUID);
                 tmp = mmDevice.createRfcommSocketToServiceRecord(deviceUUID);
             } catch (IOException e) {
                 Log.e(TAG, "ConnectThread: Could not create InsecureRfcommSocket " + e.getMessage());
@@ -211,11 +212,10 @@ public class BluetoothManager {
                 } catch (IOException e1) {
                     Log.e(TAG, "mConnectThread: run: Unable to close connection in socket " + e1.getMessage());
                 }
-                Log.d(TAG, "run: ConnectThread: Could not connect to UUID: " + MY_UUID_INSECURE );
+                Log.d(TAG, "run: ConnectThread: Could not connect to UUID: " + MY_UUID);
             }
 
-            //will talk about this in the 3rd video
-            connected(mmSocket,mmDevice);
+            connected(mmSocket);
         }
         public void cancel() {
             try {
@@ -225,79 +225,6 @@ public class BluetoothManager {
                 Log.e(TAG, "cancel: close() of mmSocket in Connectthread failed. " + e.getMessage());
             }
         }
-    }
-
-
-
-    /**
-     * Start the chat service. Specifically start AcceptThread to begin a
-     * session in listening (server) mode. Called by the Activity onResume()
-     */
-    public synchronized void start() {
-        Log.d(TAG, "start");
-
-        // Cancel any thread attempting to make a connection
-        if (mConnectThread != null) {
-            mConnectThread.cancel();
-            mConnectThread = null;
-        }
-        if (mInsecureAcceptThread == null) {
-            mInsecureAcceptThread = new AcceptThread();
-            mInsecureAcceptThread.start();
-        }
-    }
-
-    /**
-     AcceptThread starts and sits waiting for a connection.
-     Then ConnectThread starts and attempts to make a connection with the other devices AcceptThread.
-     **/
-
-    public void startClientControl(BluetoothDevice device,UUID uuid, SensorsControlView sensorView)
-    {
-        Log.d(TAG, "startClient: Started Control mode.");
-
-        mode = CONTROL_MODE;
-
-        this.sensorView = sensorView;
-        //initprogress dialog
-        mProgressDialog = ProgressDialog.show(mContext,"Connecting Bluetooth"
-                ,"Please Wait...",true);
-
-        firstTime = true;
-
-        if (mConnectThread == null)
-            mConnectThread = new ConnectThread(device, uuid);
-        else
-        {
-            mConnectThread.yield();
-        }
-        mConnectThread.start();
-
-    }
-
-    public void startClientAutonomous (BluetoothDevice device, UUID uuid, NetworkView netview, BayesianNetwork net)
-    {
-        Log.d(TAG, "startClient: Started Autonomous mode.");
-
-        mode = AUTONOMOUS_MODE;
-
-        //initprogress dialog
-        mProgressDialog = ProgressDialog.show(mContext,"Connecting Bluetooth"
-                ,"Please Wait...",true);
-
-        firstTime = true;
-
-        if (mConnectThread == null)
-            mConnectThread = new ConnectThread(device, uuid);
-        else
-        {
-            mConnectThread.yield();
-        }
-
-        this.netview = netview;
-        netBayes = net;
-
-        mConnectThread.start();
     }
 
     /**
@@ -466,10 +393,82 @@ public class BluetoothManager {
         }
     }
 
-    private void connected(BluetoothSocket mmSocket, BluetoothDevice mmDevice) {
+    /**
+     * Start the chat service. Specifically start AcceptThread to begin a
+     * session in listening (server) mode. Called by the Activity onResume()
+     */
+    public synchronized void start() {
+        Log.d(TAG, "start");
+
+        // Cancel any thread attempting to make a connection
+        if (mConnectThread != null) {
+            mConnectThread.cancel();
+            mConnectThread = null;
+        }
+        if (mInsecureAcceptThread == null) {
+            mInsecureAcceptThread = new AcceptThread();
+            mInsecureAcceptThread.start();
+        }
+    }
+
+    /**
+     AcceptThread starts and sits waiting for a connection.
+     Then ConnectThread starts and attempts to make a connection with the other devices AcceptThread.
+     **/
+
+    public void startClientControl(BluetoothDevice device,UUID uuid, SensorsControlView sensorView)
+    {
+        Log.d(TAG, "startClient: Started Control mode.");
+
+        mode = CONTROL_MODE;
+
+        this.sensorView = sensorView;
+        //initprogress dialog
+        mProgressDialog = ProgressDialog.show(mContext,"Connecting Bluetooth"
+                ,"Please Wait...",true);
+
+        firstTime = true;
+
+        if (mConnectThread == null)
+            mConnectThread = new ConnectThread(device, uuid);
+        else
+        {
+            mConnectThread.yield();
+        }
+        mConnectThread.start();
+
+    }
+
+    public void startClientAutonomous (BluetoothDevice device, UUID uuid, NetworkView netview, BayesianNetwork net)
+    {
+        Log.d(TAG, "startClient: Started Autonomous mode.");
+
+        mode = AUTONOMOUS_MODE;
+
+        //initprogress dialog
+        mProgressDialog = ProgressDialog.show(mContext,"Connecting Bluetooth"
+                ,"Please Wait...",true);
+
+        firstTime = true;
+
+        if (mConnectThread == null)
+            mConnectThread = new ConnectThread(device, uuid);
+        else
+        {
+            mConnectThread.yield();
+        }
+
+        this.netview = netview;
+        netBayes = net;
+
+        mConnectThread.start();
+    }
+
+
+
+    private void connected(BluetoothSocket mmSocket) {
         Log.d(TAG, "connected: Starting.");
 
-        // Start the thread to manage the connection and perform transmissions
         mConnectedThread = new ConnectedThread(mmSocket);
         mConnectedThread.start();
     }

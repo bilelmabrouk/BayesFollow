@@ -22,6 +22,7 @@ public class NetworkView extends View {
     private String dirMotor;
     private int percentMotor;
     private int colorMotor;
+
     public NetworkView(Context context) {
         super(context);
         Initialisation(null);
@@ -110,7 +111,6 @@ public class NetworkView extends View {
 
 
         int p1,p2,p3,p4x,p4y,debx,deby;
-        double cos,sin,diff;
         paint.setColor(Color.argb(255,162,122,226)); //HEX is: #A27AE2
 
         //Triangle1
@@ -193,19 +193,6 @@ public class NetworkView extends View {
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setColor(Color.BLACK);
         canvas.drawPath(triangle,paint);
-
-        /*
-        paint.setStrokeWidth(5);
-        Paint paint2 = new Paint();
-        paint2.setColor(Color.RED);
-        paint2.setStyle(Paint.Style.FILL);
-
-        canvas.drawCircle(100,100,50,paint);
-        canvas.drawCircle(250,100,50,paint2);
-        canvas.drawCircle(400,100,50,paint2);
-        canvas.drawCircle(550,100,50,paint);
-        */
-
 
         invalidate();
     }

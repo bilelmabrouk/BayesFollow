@@ -276,7 +276,7 @@ public class BayesianNetwork
 
     }
 
-    public void copyMotorVector(double[] vector)
+    public void getMotorVector(double[] vector)
     {
         for (int i=0; i<vMotor.length; i++)
         {
@@ -284,7 +284,7 @@ public class BayesianNetwork
         }
     }
 
-    public void copySensorVector(int id, double[] vector)
+    public void getSensorVector(int id, double[] vector)
     {
         for (int i=0; i<vSensors[id-1].length; i++)
         {

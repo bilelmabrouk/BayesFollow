@@ -1,6 +1,7 @@
 package com.example.bilel.bluetoothfirstapp;
 
-import android.graphics.Typeface;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,7 +28,7 @@ public class ControlLogActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_result);
+        setContentView(R.layout.activity_control_log);
         Initialisation();
         setEvents();
     }
@@ -62,11 +63,11 @@ public class ControlLogActivity extends AppCompatActivity {
                 double[] vSensor3 = new double[]{0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1};
                 double[] vSensor4 = new double[]{0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1};
 
-                netBayes.copyMotorVector(vMotor);
-                netBayes.copySensorVector(1,vSensor1);
-                netBayes.copySensorVector(2,vSensor2);
-                netBayes.copySensorVector(3,vSensor3);
-                netBayes.copySensorVector(4,vSensor4);
+                netBayes.getMotorVector(vMotor);
+                netBayes.getSensorVector(1,vSensor1);
+                netBayes.getSensorVector(2,vSensor2);
+                netBayes.getSensorVector(3,vSensor3);
+                netBayes.getSensorVector(4,vSensor4);
 
                 for (int i=1; i<states.size(); i++)
                 {
@@ -219,9 +220,11 @@ public class ControlLogActivity extends AppCompatActivity {
                     {
                         vMotor[7] = (vMotor[7]*i)/(i+1);
                     }
-                    Log.d(Constants.TAG, "vMotor (" + i + ") : " + vMotor[0] + ", " + vMotor[1] + ", " + vMotor[2] + ", " + vMotor[3] + ", " + vMotor[4] + ", " + vMotor[5] + ", " + vMotor[6] + ", " + vMotor[7]);
+                    Log.d(Constants.TAG, "vMotor (" + i + ") : " + vMotor[0] + ", " + vMotor[1] + ", " + vMotor[2] + ", " + vMotor[3]
+                            + ", " + vMotor[4] + ", " + vMotor[5] + ", " + vMotor[6] + ", " + vMotor[7]);
                 }
-                Log.d(Constants.TAG, "vMotor Final: " + vMotor[0] + ", " + vMotor[1] + ", " + vMotor[2] + ", " + vMotor[3] + ", " + vMotor[4] + ", " + vMotor[5] + ", " + vMotor[6] + ", " + vMotor[7]);
+                Log.d(Constants.TAG, "vMotor Final: " + vMotor[0] + ", " + vMotor[1] + ", " + vMotor[2] + ", " + vMotor[3] + ", " +
+                        vMotor[4] + ", " + vMotor[5] + ", " + vMotor[6] + ", " + vMotor[7]);
                 netBayes.editMotorValues(vMotor);
                 netBayes.editSensorValues(1,vSensor1);
                 netBayes.editSensorValues(2,vSensor2);

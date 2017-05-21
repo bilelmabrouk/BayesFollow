@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.bilel.bluetoothfirstapp.RemoteControlActivity"
+    tools:context="com.example.bilel.bluetoothfirstapp.MainActivity"
     android:orientation="vertical"
     android:background="#383A4C">
 
     <TextView
-        android:id="@+id/titre1"
+        android:id="@+id/titre22"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
@@ -17,80 +17,71 @@
         android:textAlignment="center"
         android:textColor="#FF5C97E1"
         android:textSize="70dp"
-        android:textStyle="bold"/>
-    <TextView
-        android:id="@+id/titre2"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"/>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="The Remote Control"
-        android:textColor="#EE4B86D0"
-        android:textSize="35dp"
-        android:textStyle="italic"
-        android:layout_marginTop="-15dp"
-        android:layout_marginRight="20dp"
-        android:textAlignment="textEnd"
-        />
+        android:orientation="horizontal"
+        android:layout_centerInParent="true"
+        android:padding="25dp">
+        <ImageButton
+            android:id="@+id/autoMode"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/nbn"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:background="#383A4C"
+            android:layout_margin="15dp"
+            />
+        <ImageButton
+            android:id="@+id/controlMode"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/image_button_bg"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:background="#383A4C"
+            android:layout_margin="15dp"
+            />
+    </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/mainLayout"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".85">
+        android:layout_height="wrap_content"
+        android:layout_weight="0.12"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:layout_margin="5dp">
 
-        <com.example.bilel.bluetoothfirstapp.SensorsControlView
-            android:id="@+id/sensorView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <com.dualcores.swagpoints.SwagPoints
-            android:id="@+id/speedView"
-            android:layout_width="460dp"
-            android:layout_height="460dp"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:padding="64dp"
-            app:min="0"
-            app:max="255"
-            app:step="5"
-            app:progressColor="#FF5C97E1"
-            app:textColor="#383A4C"/>
-        <RelativeLayout
-            android:id="@+id/imgLayout"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/image_button_bg"
-            android:layout_centerInParent="true"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/sensorView">
-        </RelativeLayout>
-
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".15">
-
-        <LinearLayout
-            android:padding="15dp"
-            android:layout_alignParentBottom="true"
-            android:orientation="vertical"
+        <Button
+            android:id="@+id/connect2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:text="Connect to bluetooth"
+            android:background="#28878D"
+            android:layout_marginBottom="15dp"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_gravity="bottom"/>
 
-            <Button
-                android:id="@+id/finish"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Start"
-                android:background="#28878D"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_gravity="bottom"/>
+        <Button
+            android:id="@+id/select_dev2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select A Paired Device"
+            android:background="#1C1D26"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="15dp"
+            />
 
-        </LinearLayout>
+    </LinearLayout>
 
-    </RelativeLayout>
-
-
-
-</LinearLayout>
+</RelativeLayout>

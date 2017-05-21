@@ -67,9 +67,6 @@ public class SensorsControlView extends View
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int parentViewWidth = MeasureSpec.getSize(widthMeasureSpec);
-        int parentViewHeight = MeasureSpec.getSize(heightMeasureSpec);
-        // ... take into account the parent's size as needed ...
         super.onMeasure(
                 MeasureSpec.makeMeasureSpec(540, MeasureSpec.EXACTLY),
                 MeasureSpec.makeMeasureSpec(230, MeasureSpec.EXACTLY));

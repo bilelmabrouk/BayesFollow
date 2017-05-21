@@ -17,13 +17,9 @@ int maxspeed = 200;
 
 bool pressed = false;
 
-//***change those values to suit ur enviroment***speed declaration for motors speeds (forward & reverse = speedmax)(turnright or turnleft = speeedmin
-int speedmax = 255; //set defult speed of motor 0-255
-int speedmin;//set the defult min speed to turn 0-255
-int mode = 800;  //value of difference for motors to react 0-1023
+char robotMode = 's';
 
 char mov = '5';
-char robotMode = 's';
 char exmov = '5';
 
 int sensors = 0;
@@ -139,12 +135,6 @@ void loop()//here is where everyting run sover and over again until the power sh
   
 }
 
-void RELEASE()
-{
-  digitalWrite(brel, LOW);
-  digitalWrite(brer, LOW);
-}  
-
 void forward(void)//decelares the forward() void
 {
   digitalWrite(dirl, LOW);
@@ -165,24 +155,14 @@ void backward(void)//decelares the forward() void
   analogWrite(pmwr, maxspeed);
 }
 
-void turningspeed(void)//decelares the forward() void
-{
-  digitalWrite(dirl, LOW);
-  digitalWrite(dirr, LOW);
-  digitalWrite(brel, LOW);
-  digitalWrite(brer, LOW);
-  analogWrite(pmwl, 80);
-  analogWrite(pmwr, 80);
-}
-
 void STOP(void)//decelares the reverse() void
 {
   digitalWrite(dirl, LOW);
   digitalWrite(dirr, LOW);
   digitalWrite(brel, HIGH);
   digitalWrite(brer, HIGH);
-  analogWrite(pmwl, speedmax);
-  analogWrite(pmwr, speedmax);
+  analogWrite(pmwl, maxspeed);
+  analogWrite(pmwr, maxspeed);
 }
 
 void turnright(void)//decelares the turnright() void

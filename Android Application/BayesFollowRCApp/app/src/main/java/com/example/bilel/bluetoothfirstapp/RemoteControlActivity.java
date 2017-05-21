@@ -44,7 +44,7 @@ public class RemoteControlActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_remote_control);
         getDevice();
         Initialisation();
         InitJoyStick();
@@ -146,7 +146,7 @@ public class RemoteControlActivity extends AppCompatActivity {
                     finishBTN.setText("Start");
                     //To Complete with intent and logging stuff
                     ArrayList<State> recordedStates = mBluetoothConnection.getRecordedStates();
-                    mBluetoothConnection.resetRecorderStates();
+                    mBluetoothConnection.resetRecordedStates();
                     mBluetoothConnection.enablemov(false);
                     StateDAO myDAO = new StateDAO(getApplicationContext());
                     myDAO.open();
